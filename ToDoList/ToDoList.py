@@ -1,31 +1,66 @@
-# greet user
-print("Welcome to the To-Do List app! \n 1. Add a task \n 2. View tasks \n 3. Remove a task \n 4. Exit")
+tasklist = []
 
-choice = input("Enter your choice: ")
+def add_task():
+    while True:
+        addtask = input("Would you like to add a task? ")
+        if addtask.lower() == "yes":   
+            added_task = input("Add your task here: ")
+            tasklist.append(added_task)
+            print(f'Task added. Updated tasks: {tasklist}')
+        elif addtask.lower() == "no":
+            break
+        else:
+            print("Invalid input. Please enter 'yes' or 'no'.")
+
+def view_task():
+    while True:
+        view_tasks = input("Would you like to view your current tasks? ")
+        if view_tasks.lower() == "yes":
+            if tasklist:
+                print(tasklist)
+            else:
+                print("No tasks availiable.")
+            break
+        elif view_tasks.lower() == "no":
+            break
+        else:
+            print("Invalid input. Please enter 'yes' or 'no'.")
+
+def remove_task():
+    while True:
+        print(tasklist)
+        delete_task = input("Would you like to remove a task? ")
+        if delete_task.lower() == "yes":
+            delete_this_task = input("Please enter a task you would like to remove: ")
+            tasklist.remove(delete_this_task)
+            print(f'Task removed. Updated tasks: {tasklist}')
+            break
+        elif delete_task.lower() == "no":
+            break
+        else:
+            print("Invalid input. Please enter 'yes' or 'no'.")
+
+
+def exit_program():
+    print("Goodbye!")
+
+
+# greet user
+print("Welcome to this To-Do List program! \n 1. Add a task \n 2. View tasks \n 3. Remove a task \n 4. Exit")
+
 
 # prompt user for add/view/remove tasks or exit
 while True:
+    choice = input("Enter your choice: ")
+
     if choice == "1":
-        add_task = input("would you like to enter a task? ") # anything but yes gives infinity loop. find a way to fix that
-        break
-        if add_task == "yes":   
-            added_task = input("Add your task here: ") # add task to a list
-            break
+        add_task()
     elif choice == "2":
-        print("you chose to view your current tasks!") # call a viewtask program
-        break
+        view_task()
     elif choice == "3":
-        print("you chose to remove a task!") # call a removetask program
-        break
+        remove_task()
     elif choice == "4":
-        print("Bye!")
+        exit_program()
         break
     else:
-        print("Please enter a listed number.") # find a way to ask again
-        break
-
-
-# later find a way to ignore capitalizations/lowercases
-
-# the essence that makes something the kind of thing it is when you homegenize a city you destroy its feeling of urbanity. ms schulman said, referring to the banks and drugstores and chains retailers steadily
-# wallpapering over the cities indespensible quiddies. New your times( feb 25 2020) quiddity can refer to the essence of something or to a trivial distraction
+        print("Invalid answer. Please pick a listed number.")
